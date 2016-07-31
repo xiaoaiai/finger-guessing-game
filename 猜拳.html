@@ -1,0 +1,86 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>分歧终端机-和谐社会</title>
+    <script language="javascript" type="text/javascript">
+        var time;
+        var pid,tid;
+        var qvan=["images/石头.jpg","images/剪刀.jpg","images/布.jpg"];
+        var sum=0;
+        var policesum=0;
+        var terroristsum=0;
+        var peacesum=0;
+        function mystart(){
+            document.getElementById("resultimg").innerHTML="";
+            pid=Math.floor(Math.random()*3);
+            tid=Math.floor(Math.random()*3);
+            policeimg.src=qvan[pid];
+            terroristimg.src=qvan[tid];
+            document.getElementById("startbtn").disabled=true;
+            document.getElementById("stopbtn").disabled=false;
+            time=setTimeout(mystart,100);
+        }
+        function mystop(){
+            document.getElementById("startbtn").disabled=false;
+            document.getElementById("stopbtn").disabled=true;
+            clearTimeout(time);
+            sum+=1;
+            document.getElementById("count").innerText=sum;
+            if(pid==0&&tid==1||pid==1&&tid==2||pid==2&&tid==0){
+                policesum+=1;
+                document.getElementById("policewinimg").height+=10;
+                document.getElementById("policewin").innerText=policesum;
+                document.getElementById("resultimg").innerHTML="<img src='images/警察.gif' width='100' height='100'>警察获得胜利";
+            }else if(pid==tid){
+                peacesum+=1;
+                document.getElementById("peace").innerText=peacesum;
+                document.getElementById("resultimg").innerHTML="<img src='images/和平.jpg' width='100' height='100'>警察与恐怖分子和平共处";
+            }else{
+                terroristsum+=1;
+                document.getElementById("terroristwinimg").height+= 10;
+                document.getElementById("terroristwin").innerText=terroristsum;
+                document.getElementById("resultimg").innerHTML="<img src='images/恐怖分子.gif' width='100' height='100'>恐怖分子获得了胜利";
+            }
+        }
+    </script>
+</head>
+ 
+<body>
+<center>
+<h1>让世界和平起来</h1>
+  <p>
+     <b>
+         <font style="color:#000; font-size:4;">第</font>
+         <font style="color:red;font-size:4;" id="count">0</font>
+         <font style="color:#000; font-size:4;">局、</font>
+         <font style="color:#000; font-size:4;">和平：</font>
+         <font style="color:blue;font-size:4;" id="peace">0</font>
+         <font style="color:#000; font-size:4;">次</font>
+      </b>
+   </p><hr/>
+   <p>
+         <img src="images/成绩.jpg" id="policewinimg" height="1" width="20">
+        <font style="color:red;font-size:4">警察</font>
+        
+             <font style="color:blue;font-size:4">win:</font>
+             <font style="color:blue;font-size:4" id="policewin">0</font>
+             <font style="color:blue;font-size:4">次</font>
+         </b>
+         <img src="images/警察.gif" id="policeimg" width="260" height="260">
+         <img src="images/pk.jpg" style="width:100px;height:90px">
+         <img src="images/恐怖分子.gif" id="terroristimg" width="260" height="260">
+         <img src="images/成绩.jpg" id="terroristwinimg" height="1" width="20">
+         <font style="color:#FF0000;font-size:5">恐怖分子</font>
+         <font style="color:blue;font-size:4">win:</font>
+         <font style="color:blue;font-size:4" id="terroristwin">0</font>
+         <font style="color:blue;font-size:4">次</font>
+   </p>
+   <p>
+         <input type="button" value="开始" id="startbtn" onclick="mystart()" />
+         <input type="button" value="结束" id="stopbtn" onclick="mystop()" disabled="disabled" />
+   </p>
+   <h2 id="resultimg"></h2>
+</center>
+</body>
+</html>
